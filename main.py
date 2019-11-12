@@ -26,6 +26,7 @@ app = Flask(__name__)
 # GET: /api/starships/
 # =====================
 
+
 @app.route('/api/starships', methods=['GET'])
 def get_starships():
     try:
@@ -34,6 +35,18 @@ def get_starships():
         response = {"error": "something went wrong"}
 
     return json.dumps(starships, default=lambda o: o.__dict__, indent=4)
+
+
+@app.route("/api/starships/recommend", methods=["POST"])
+def get_recommendation():
+
+    """
+
+    :return:
+    """
+    recommendation = ""  # call model for recommendation here
+    return json.dumps(recommendation, default=lambda o: o.__dict__, indent=4)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
