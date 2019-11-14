@@ -90,7 +90,7 @@ def get_recommendation():
 
     :return:
     """
-    starship_id = request.get_json()
+    starship_id = request.get_json(force=True)
     print(starship_id["id"])
     recommendation = recommend(starship_id.get('id'))  # call model for recommendation here
     return json.dumps(recommendation, default=lambda o: o.__dict__, indent=4)
