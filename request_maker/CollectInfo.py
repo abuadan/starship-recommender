@@ -114,7 +114,7 @@ class ParseInfo:
             if response:
                 film_info = self.__film_info_collector__(response["films"])
                 pilot_info = self.__pilot_info_collector__(response["pilots"])
-                starship_id = {"starship_id": response["url"].split("/")[:-2]}
+                starship_id = {"starship_id": response["url"].split("/")[-2]}
                 response.pop("films")
                 response.pop("pilots")
                 response.update(film_info)
