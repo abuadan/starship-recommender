@@ -4,7 +4,7 @@
 
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
-from request_maker import CollectInfo, RequestBuilder
+from request_maker import collect_info, request_builder
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 import logging
@@ -70,7 +70,7 @@ class MyDatabase:
             self.logger.info("Closing session")
 
 
-class UpdateDB(CollectInfo.ParseInfo, MyDatabase):
+class UpdateDB(collect_info.ParseInfo, MyDatabase):
 
     """
     """

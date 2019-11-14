@@ -3,7 +3,7 @@
 """
 
 
-from RequestBuilder import AsyncRequestMaker, SyncRequestMaker
+from request_maker.request_builder import AsyncRequestMaker, SyncRequestMaker
 import requests
 import logging
 import json

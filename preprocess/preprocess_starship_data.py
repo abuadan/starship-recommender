@@ -6,7 +6,7 @@ There will be two parts
 """
 import logging
 import category_encoders as ce
-from CollectInfo import ParseInfo
+from request_maker.collect_info import ParseInfo
 import pandas as pd
 from sklearn import preprocessing
 import numpy as np

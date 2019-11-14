@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
+from abc import ABC
 
 from flask import Flask, request
 import json
 from utils.destinations import destinations
 import swapi
-from preprocess_starship_data import PreProcessing
-from recommender_system import StarShipRecommendation
+from preprocess.preprocess_starship_data import PreProcessing
+from starships.recommender_system import StarShipRecommendation
 import pandas as pd
 import os
-
-app = Flask(__name__)
+import logging
+from flask_script import Manager
 
 # POST: /api/starships/recommend
 # =====================
@@ -29,12 +30,20 @@ app = Flask(__name__)
 
 # GET: /api/starships/
 # =====================
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+app = Flask(__name__)
 
 
+@app.before_first_request
 def __cosine_similartie__():
+    logger.info("Checking for cosine similarity csv")
     if not os.path.exists("cosine_similarities.csv"):
+        logger.debug("CSV not found, starting process")
         preprocessor = PreProcessing("starships")
         cosine_sim = StarShipRecommendation()
+        logger.info("Initialising pre-processing ")
         data = preprocessor.run_preprocessing().set_index("name", drop=True)
         cosine_sim = cosine_sim.cosine_similarity_table(data.drop(labels=["starship_id"], axis=1),
                                                         data.drop(labels=["starship_id"], axis=1))
@@ -88,5 +97,4 @@ def get_recommendation():
 
 
 if __name__ == '__main__':
-    __cosine_similartie__()
     app.run(host='0.0.0.0', port=5000)
