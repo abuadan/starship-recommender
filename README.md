@@ -1,11 +1,9 @@
-# Starship Recommendation Test
+# Starship Recommendation 
 
 ## Task
-Write a basic recommendation system for starships using the Star Wars API.
 
-How you recommend starships is up to you.
-
-When submitting a post request to ${host}/starships/:id a list of alternatives should be returned.
+Because starships are awesome, and like sometimes you want more starships so here is a simple starwars starship recommendation engine 
+When submitting a post request to https://swapi.co/starships/:id a list of alternatives are returned.
 
 You can learn more about the Starwars API here: https://swapi.co
 
